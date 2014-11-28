@@ -176,7 +176,7 @@ if (os.path.isdir(filelocation)== False):
     print "Path entered is invalid..Try again.."
 else:
     output_path=raw_input("Enter output path :")
-    if (os.path.isdir(filelocation)== False):
+    if (os.path.isdir(output_path)== False):
         print "Path entered is invalid."
         print "I'm going to place report in "
         print filelocation
@@ -189,7 +189,7 @@ else:
     for file_path in all_files:
         filepath,filename=os.path.split(file_path)
         if(filename[-3:]=='vcl'):
-            print "Searching in file."+filename
+            print "Searching in file : "+filename
             for command in CNS_VCL_COMMANDS:
                 file_Content = open(file_path).read()
                 splited_command=command.split(' ')
@@ -208,7 +208,7 @@ else:
     # Creating Report file for CNS Commands.
     # Creating Report Commands present in Files.
     Command_Report=open(output_path+'\\CommandReport.csv','w')
-    CommandReport.write('Command'+'File name'+'\n')
+    Command_Report.write('Command,'+'File name'+'\n')
     for command in Command_result.keys():
         for filename in Command_result[command]:
             Command_Report.write(command+','+filename+'\n')
@@ -216,7 +216,7 @@ else:
     # Creating report file for CNS Commands.
     #Creating report Files corresponding commands present.
     File_Report=open(output_path+'\\File_Report.csv','w')
-    File_Report.write('Filename','Command')
+    File_Report.write('Filename,'+'Command'+'\n')
     for filename in file_result.keys():
         for command in file_result[filename]:
             File_Report.write(filename+','+command+'\n')
